@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sportify Elite</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Sportify Elite</div>
+    <input type="text" id="search" placeholder="Search...">
+    <div class="nav-icons">
+      <button id="profileBtn" title="Profile">👤</button>
+      <button id="cartBtn" title="Cart">🛒 <span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <!-- Profile Modal -->
+  <div id="profileModal" class="modal">
+    <div class="modal-box animated fadeInDown">
+      <span class="close">&times;</span>
+      <h2>Update Profile</h2>
+      <label>Name</label>
+      <input type="text" id="username" placeholder="Your Name" />
+      <label>Mobile No</label>
+      <input type="text" id="mobile" placeholder="1234567890" />
+      <label>Address</label>
+      <textarea id="address" rows="3" placeholder="Your Address"></textarea>
+      <button onclick="saveProfile()">Save</button>
+    </div>
+  </div>
+
+  <!-- Floating Cart -->
+  <div id="cartModal" class="floating-box animated fadeInRight">
+    <h3>Your Cart</h3>
+    <ul id="cartItems"></ul>
+    <button onclick="closeCart()">Close</button>
+  </div>
+
+  <!-- Buy Modal -->
+  <div id="buyModal" class="modal">
+    <div class="modal-box animated zoomIn">
+      <h3>Checkout</h3>
+      <p id="buyProductTitle"></p>
+      <label>Choose Payment Method:</label>
+      <select id="paymentMethod">
+        <option>Credit/Debit Card</option>
+        <option>UPI</option>
+        <option>Cash on Delivery</option>
+      </select>
+      <div id="paymentInputs"></div>
+      <button onclick="completePurchase()">Pay</button>
+      <button onclick="closeBuy()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <main id="product-list">
+    <div class="product-card animated fadeInUp">
+      <img src="images/cbat.jpg" alt="Cricket Bat" />
+      <h3>Cricket Bat</h3>
+      <p>$49.99</p>
+      <button onclick="addToCart('Cricket Bat')">Add to Cart</button>
+      <br><button onclick="buyNow('Cricket Bat')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/glove.jpg" alt="Batting Gloves" />
+      <h3>Batting Gloves</h3>
+      <p>$24.99</p>
+      <button onclick="addToCart('Batting Gloves')">Add to Cart</button>
+      <br><button onclick="buyNow('Batting Gloves')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/ball.jpg" alt="Tennis Ball" />
+      <h3>Tennis Ball</h3>
+      <p>$0.99</p>
+      <button onclick="addToCart('Tennis Ball')">Add to Cart</button>
+      <br><button onclick="buyNow('Tennis Ball')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/bmnton.jpg" alt="Shuttle Rackets" />
+      <h3>Shuttle Rackets</h3>
+      <p>$4.99</p>
+      <button onclick="addToCart('Shuttle Rackets')">Add to Cart</button>
+      <br><button onclick="buyNow('Shuttle Rackets')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/shtlck.jpg" alt="Shuttle Cock" />
+      <h3>Shuttle Cock</h3>
+      <p>$0.99</p>
+      <button onclick="addToCart('Shuttle Cock')">Add to Cart</button>
+      <br><button onclick="buyNow('Shuttle Cock')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/fball.jpg" alt="Foot Ball" />
+      <h3>Foot Ball</h3>
+      <p>$29.99</p>
+      <button onclick="addToCart('Foot Ball')">Add to Cart</button>
+      <br><button onclick="buyNow('Foot Ball')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/helmet.jpg" alt="Cricket Helmet" />
+      <h3>Cricket Helmet</h3>
+      <p>$49.99</p>
+      <button onclick="addToCart('Cricket Helmet')">Add to Cart</button>
+      <br><button onclick="buyNow('Cricket Helmet')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/jersey.jpg" alt="Jersey" />
+      <h3>Jersey</h3>
+      <p>$4.99</p>
+      <button onclick="addToCart('Jersey')">Add to Cart</button>
+      <br><button onclick="buyNow('Jersey')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/net.png" alt="Badminton Net" />
+      <h3>Badminton Net</h3>
+      <p>$10.99</p>
+      <button onclick="addToCart('Badminton Net')">Add to Cart</button>
+      <br><button onclick="buyNow('Badminton Net')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/pads.jpg" alt="Cricket Kit" />
+      <h3>Cricket Kit</h3>
+      <p>$79.99</p>
+      <button onclick="addToCart('Cricket Kit')">Add to Cart</button>
+      <br><button onclick="buyNow('Cricket Kit')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/shoe1.jpg" alt="Shoe" />
+      <h3>Shoe</h3>
+      <p>$15.99</p>
+      <button onclick="addToCart('Shoe')">Add to Cart</button>
+      <br><button onclick="buyNow('Shoe')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/vball.jpg" alt="Volley Ball" />
+      <h3>Volley Ball</h3>
+      <p>$19.99</p>
+      <button onclick="addToCart('Volley Ball')">Add to Cart</button>
+      <br><button onclick="buyNow('Volley Ball')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/vballnet.jpg" alt="VolleyBall Net" />
+      <h3>VolleyBall Net</h3>
+      <p>$20.99</p>
+      <button onclick="addToCart('VolleyBall Net')">Add to Cart</button>
+      <br><button onclick="buyNow('VolleyBall Net')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/wic.jpg" alt="Stumps" />
+      <h3>Stumps</h3>
+      <p>$12.99</p>
+      <button onclick="addToCart('Stumps')">Add to Cart</button>
+      <br><button onclick="buyNow('Stumps')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/baseball.jpg" alt="BaseBall" />
+      <h3>BaseBall</h3>
+      <p>$9.99</p>
+      <button onclick="addToCart('BaseBall')">Add to Cart</button>
+      <br><button onclick="buyNow('BaseBall')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/basebat.jpg" alt="BaseBall Bat" />
+      <h3>BaseBall Bat</h3>
+      <p>$13.99</p>
+      <button onclick="addToCart('BaseBall Bat')">Add to Cart</button>
+      <br><button onclick="buyNow('BaseBall Bat')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/bball.jpg" alt="Basket Ball" />
+      <h3>Basket Ball</h3>
+      <p>$20.99</p>
+      <button onclick="addToCart('Basket Ball')">Add to Cart</button>
+      <br><button onclick="buyNow('Basket Ball')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/hkball.jpg" alt="Hockey Ball" />
+      <h3>Hockey Ball</h3>
+      <p>$13.99</p>
+      <button onclick="addToCart('Hockey Ball')">Add to Cart</button>
+      <br><button onclick="buyNow('Hockey Ball')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/hkey.jpg" alt="Hockey Bat" />
+      <h3>Hockey Bat</h3>
+      <p>$27.99</p>
+      <button onclick="addToCart('Hockey Bat')">Add to Cart</button>
+      <br><button onclick="buyNow('Hockey Bat')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/kgves.jpg" alt="Keeper Gloves" />
+      <h3>Keeper Gloves</h3>
+      <p>$14.99</p>
+      <button onclick="addToCart('Keeper Gloves')">Add to Cart</button>
+      <br><button onclick="buyNow('keeper Gloves')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/rugby.jpg" alt="Rugby Ball" />
+      <h3>Rugby Ball</h3>
+      <p>$59.99</p>
+      <button onclick="addToCart('Rugby Ball')">Add to Cart</button>
+      <br><button onclick="buyNow('Rugby Ball')">Buy Now</button>
+    </div>
+    <div class="product-card animated fadeInUp">
+      <img src="images/wbcric.jpg" alt="White CricketBall" />
+      <h3>White CricketBall</h3>
+      <p>$16.99</p>
+      <button onclick="addToCart('White CricketBall')">Add to Cart</button>
+      <br><button onclick="buyNow('White CricketBall')">Buy Now</button>
+    </div>
+      <div class="product-card animated fadeInUp">
+      <img src="images/jwlin.png" alt="Jewylin Stick" />
+      <h3>Jewylin Stick</h3>
+      <p>$11.99</p>
+      <button onclick="addToCart('Jewylin Stick')">Add to Cart</button>
+      <br><button onclick="buyNow('Jewylin Stick')">Buy Now</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Sportify Elite
+      <br><br><a href="www.facebook.com"><img src="images/fb.png" alt="icons"></a>
+      <a href="www.instagram.com"><img src="images/insta.jpg" alt="icons"></a> 
+      <a href="www.twitter.com"><img src="images/twtr.jpg" alt="icons"></a>
+      <a href="www.whatsapp.com"><img src="images/wap.jpg" alt="icons"></a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
